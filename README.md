@@ -1,4 +1,4 @@
-## Currency Conversion
+# Currency Conversion
 A simple project to allow for creation of a freelancer profile with basic information.
 
 Currency for freelancer's hourly rate can be converted using a driver specified in the user.php config file.
