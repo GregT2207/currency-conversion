@@ -39,7 +39,9 @@
         </style>
     </head>
     <body style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-        <form>
+        <form method="post" action="/users">
+            @csrf
+
             <h2>Create new user</h2>
 
             <div style="display: flex; flex-direction: column; align-items: center;">
@@ -47,7 +49,7 @@
                 <input type="text" name="firstName" type="text" placeholder="First Name" required>
                 <input type="text" name="lastName" type="text" placeholder="Last Name" required>
                 <input type="text" name="location" type="text" placeholder="Location">
-                <input type="text" name="jobTitle" type="text" placeholder="Job Title">
+                <input type="text" name="jobTitle" type="text" placeholder="Job Title" required>
                 <input type="number" name="hourlyRate" type="number" step="0.01" placeholder="Hourly Rate" required>
                 <input type="text" name="bio" type="text" placeholder="Bio">
 

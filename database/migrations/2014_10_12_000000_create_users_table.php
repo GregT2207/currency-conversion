@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->string('job_title');
             $table->float('hourly_rate', 8, 2);
-            $table->string('bio');
+            $table->string('bio')->nullable();
             $table->timestamps();
         });
     }

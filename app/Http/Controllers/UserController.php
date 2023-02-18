@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -35,7 +36,27 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'jobTitle' => 'required',
+            'hourlyRate' => 'required|numeric',
+        ]);
+
+        $user = new User();
+
+        $user->email = $request->email;
+        $user->first_name = $request->firstName;
+        $user->last_name = $request->lastName;
+        $user->location = $request->location;
+        $user->job_title = $request->jobTitle;
+        $user->hourly_rate = $request->hourlyRate;
+        $user->bio = $request->bio;
+
+        $user->save();
+
+        return new UserResource($user);
     }
 
     /**
