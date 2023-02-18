@@ -6,23 +6,37 @@
 
         <title>Currency Conversion</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-        <style>
-            body {
-                width: 100%;
-                font-family: 'Nunito', sans-serif;
-            }
-        </style>
+        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="/styles.css">
     </head>
-    <body style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-        <a href="/users/create">Create new user</a>
+    <body>
+        <a href="/users/create" style="position: fixed; align-self: end; margin-right: 50px;">Create new user</a>
 
-        <hr>
-
-        <form method="post" action="/users">
+        <form id="convertForm">
             @csrf
+
+            <h2>Convert user currency</h2>
+
+            <div style="display: flex; flex-direction: column;">
+                <input type="number" name="userID" step="1" placeholder="User ID" required>
+                <select name="currency" required>
+                    <option value="" selected>Please choose a currency...</option>
+                    <option value="eur">EUR</option>
+                    <option value="usd">USD</option>
+                    <option value="gbp">GBP</option>
+                </select>
+
+                <button type="submit">Submit</button>
+            </div>
         </form>
+
+        <script>
+            var form = document.querySelector('#convertForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                window.location.href = '/users/'+form.userID.value+'/'+form.currency.value;
+            })
+        </script>
     </body>
 </html>
