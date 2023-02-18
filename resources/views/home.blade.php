@@ -21,7 +21,7 @@
 
         <hr>
 
-        <form method="post" action="">
+        <form method="post" action="/users">
             @csrf
         </form>
     </body>

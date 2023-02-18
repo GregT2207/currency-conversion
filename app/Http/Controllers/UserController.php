@@ -69,7 +69,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return new UserResource($user);
+    }
+
+    public function showConvertedCurrency(User $user, $currency)
+    {
+        $user->convertCurrency($currency);
+
+        return new UserResource($user);
     }
 
     /**
