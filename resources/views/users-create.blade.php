@@ -20,7 +20,8 @@
                 font-family: 'Nunito', sans-serif;
             }
 
-            input {
+            input, select {
+                width: 100%;
                 margin-bottom: 10px;
                 padding: 5px;
                 background: #c9cdd4;
@@ -51,6 +52,12 @@
                 <input type="text" name="location" type="text" placeholder="Location">
                 <input type="text" name="jobTitle" type="text" placeholder="Job Title" required>
                 <input type="number" name="hourlyRate" type="number" step="0.01" placeholder="Hourly Rate" required>
+                <select name="currency" required>
+                    <option value="" selected>Please choose a currency...</option>
+                    <option value="eur">EUR</option>
+                    <option value="usd">USD</option>
+                    <option value="gbp">GBP</option>
+                </select>
                 <input type="text" name="bio" type="text" placeholder="Bio">
 
                 <button type="submit">Submit</button>

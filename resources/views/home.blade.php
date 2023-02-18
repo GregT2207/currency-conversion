@@ -18,5 +18,11 @@
     </head>
     <body style="width: 100%; display: flex; flex-direction: column; align-items: center;">
         <a href="/users/create">Create new user</a>
+
+        <hr>
+
+        <form method="post" action="">
+            @csrf
+        </form>
     </body>
 </html>

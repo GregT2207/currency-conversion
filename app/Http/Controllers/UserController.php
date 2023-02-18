@@ -42,6 +42,7 @@ class UserController extends Controller
             'lastName' => 'required',
             'jobTitle' => 'required',
             'hourlyRate' => 'required|numeric',
+            'currency' => 'required',
         ]);
 
         $user = new User();
@@ -52,6 +53,7 @@ class UserController extends Controller
         $user->location = $request->location;
         $user->job_title = $request->jobTitle;
         $user->hourly_rate = $request->hourlyRate;
+        $user->currency = $request->currency;
         $user->bio = $request->bio;
 
         $user->save();
