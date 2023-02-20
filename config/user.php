@@ -12,5 +12,5 @@ return [
     |
     */
 
-    'exchange_rates' => 'external',
+    'exchange_rates' => 'local',
 ];
