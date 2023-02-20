@@ -8,6 +8,7 @@ class Money
 {
     public $value;
     public $currency;
+    public $exchangeRates;
     
     protected $currencies = [
         'GBP',
@@ -18,18 +19,22 @@ class Money
     public function __construct($value, $currency) {
         $this->value = $value;
         $this->currency = strtoupper($currency);
+
+        $this->setExchangeRates();
     }
 
-    public function getExchangeRates()
+    public function setExchangeRates()
     {
         // Get up to date rates from "Exchange Rates API"
         if (config('user.exchange_rates') == 'external') {
-            return $this->getExternalExchangeRates();
+            $this->exchangeRates = $this->getExternalExchangeRates();
+            return true;
         }
 
         // Get hard-coded approximate rates
         if (config('user.exchange_rates') == 'local') {
-            return $this->getLocalExchangeRates();
+            $this->exchangeRates = $this->getLocalExchangeRates();
+            return true;
         }
     }
 
@@ -78,12 +83,12 @@ class Money
 
     public function convertCurrency($newCurrency)
     {
+        $newCurrency = strtoupper($newCurrency);
+
         if (!in_array($newCurrency, $this->currencies)) {
             return false;
         }
 
-        $exchangeRates = $this->getExchangeRates();
-
-        return round($this->value * $exchangeRates[strtoupper($newCurrency)], 2);
+        return round($this->value * $this->exchangeRates[$newCurrency], 2);
     }
 }
