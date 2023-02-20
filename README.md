@@ -10,5 +10,3 @@ Conversion feature is in a "Money" class with future expansion in mind. Classes 
 
 ## Usage notes
 When viewing raw JSON data your browser may display the number wrong due to floating point number behaviour. The Network tab will show the correct figure being returned.
-
-Unit tests and a database seeder are provided.
