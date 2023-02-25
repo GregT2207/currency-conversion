@@ -19,13 +19,7 @@ Route::get('/', function() {
 });
 
 // Users
+Route::resource('users', UserController::class);
 Route::controller(UserController::class)->group(function() {
-    Route::get('/users', 'index');
-    Route::get('/users/create', 'create');
-    Route::post('/users', 'store');
-    Route::get('/users/{user}', 'show');
-    Route::get('/users/{user}/{currency}', 'showConvertedCurrency');
-    Route::get('/users/{user}/edit', 'edit');
-    Route::put('/users/{user}', 'update');
-    Route::delete('/users/{user}', 'destroy');
+    Route::get('/users/{user}/{currency}', 'showConvertedCurrency')->name('users.show-converted-currency');
 });
