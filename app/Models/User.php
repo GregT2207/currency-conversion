@@ -10,6 +10,15 @@ class User extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'email',
+        'first_name',
+        'last_name',
+        'job_title',
+        'hourly_rate',
+        'currency',
+    ];
+
     public function convertCurrency($newCurrency)
     {
         $hourlyRate = new Money($this->hourly_rate, $this->currency);
