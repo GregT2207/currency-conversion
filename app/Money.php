@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Facades\Http;
+use Exception;
 
 class Money
 {
@@ -16,7 +17,8 @@ class Money
         'USD',
     ];
 
-    public function __construct($value, $currency) {
+    public function __construct($value, $currency)
+    {
         $this->value = $value;
         $this->currency = strtoupper($currency);
 
@@ -46,6 +48,10 @@ class Money
             $response = Http::withHeaders([
                 'apikey' => env('EXCHANGE_RATES_KEY')
             ])->get("https://api.apilayer.com/exchangerates_data/latest?base={$this->currency}&symbols={$currenciesStr}");
+
+            if (!$response->json('rates')) {
+                throw new Exception('Invalid response data');
+            }
 
             return $response->json('rates');
         } catch (Exception $e) {
